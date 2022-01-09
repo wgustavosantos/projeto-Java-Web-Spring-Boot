@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,6 +34,14 @@ public class UserController {
 		
 		User result = userRepository.findById(id).get(); /* Retorna um Optional .get() retorna o Objeto dentro do Optional  */
 		return result;
+		
+	}
+	
+	@PostMapping() /* requisição Post (Para salvar) */
+	public User insert(@RequestBody User user){ /* notação para adicionar um objeto/corpo da requisição */
+		
+		User result = userRepository.save(user);
+		return user;
 		
 	}
 
