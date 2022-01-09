@@ -2,9 +2,9 @@ package com.devsuperior.userdept.controllers;
 
 import java.util.List;
 
-import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +23,14 @@ public class UserController {
 	public List<User> findAll (){
 		
 		List<User> result = userRepository.findAll();
+		return result;
+		
+	}
+	
+	@GetMapping( value = "/{id}") /* http://localhost:8080/users/id */
+	public User findById (@PathVariable Long id){
+		
+		User result = userRepository.findById(id).get(); /* Retorna um Optional .get() retorna o Objeto dentro do Optional  */
 		return result;
 		
 	}
